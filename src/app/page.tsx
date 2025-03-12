@@ -139,7 +139,7 @@ export default function Portfolio() {
         />
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-600">
-          MARY JOYCE ANN GALLIGUEZZ
+          MARY JOYCE ANN GALLIGUEZ
         </h1>
 
         <p className="text-lg mt-3 text-gray-400">
