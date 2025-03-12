@@ -15,9 +15,8 @@ import {
   FaFacebook,
   FaPhp,
   FaBars,
-  
+  FaTimes,
 } from "react-icons/fa";
-import { X } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Portfolio() {
@@ -60,22 +59,69 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      <nav className="flex">
-        <div className="fixed top-4 right-4">
-          <FaBars className={` ${showNav ? "hidden" : "block"} sm:hidden`} onClick={() => setShowNav(true)} />
-            <X className={` ${showNav ? "block" : "hidden"}  `} onClick={() => setShowNav(false)}/>
-        </div>
-      </nav>
+      {/* Mobile Hamburger Menu */}
+      <div className="fixed top-4 right-4 z-50 sm:hidden">
+        {!showNav && (
+          <FaBars
+            className="text-white text-3xl cursor-pointer"
+            onClick={() => setShowNav(true)}
+            aria-label="Open menu"
+          />
+        )}
+      </div>
 
-      {showNav && (<>
-        <ol className="mt-15 mb-4 space-y-5  flex justify-center flex-col items-center">
-        <li>Home</li>
-        <li>About</li>
-        <li>Projects</li>
-        <li>Experiences</li>
-        <li>Contact</li>
-      </ol></>)}
-      
+      {/* Background Overlay */}
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 
+  ${
+    showNav
+      ? "opacity-100 pointer-events-auto"
+      : "opacity-0 pointer-events-none"
+  }`}
+        onClick={() => setShowNav(false)}
+      ></div>
+
+      {/* Mobile Menu */}
+      <nav
+        className={`fixed top-0 right-0 w-3/4 sm:w-1/2 h-full bg-gray-800 text-white shadow-lg 
+  flex flex-col items-center justify-center space-y-6 z-50 transition-transform duration-300 
+  ${showNav ? "translate-x-0" : "translate-x-full"}`}
+      >
+        {/* Close Button */}
+        <div className="absolute top-4 right-4">
+          <FaTimes
+            className="text-white text-3xl cursor-pointer"
+            onClick={() => setShowNav(false)}
+            aria-label="Close menu"
+          />
+        </div>
+
+        {["home", "about", "projects", "experiences", "contact"].map(
+          (section) => (
+            <a
+              key={section}
+              href={`#${section}`}
+              onClick={(e) => {
+                e.preventDefault();
+                const target = document.getElementById(section);
+                if (target) {
+                  target.scrollIntoView({ behavior: "smooth" });
+                  setShowNav(false);
+                  setActiveSection(section);
+                }
+              }}
+              className={`text-xl font-medium capitalize px-6 py-3 rounded-md w-full text-center
+      ${
+        activeSection === section
+          ? "bg-orange-400 text-gray-900 font-bold"
+          : "hover:text-orange-400 hover:bg-gray-700"
+      }`}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </a>
+          )
+        )}
+      </nav>
 
       {/* Hero Section */}
       <motion.section
