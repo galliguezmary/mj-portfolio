@@ -14,45 +14,68 @@ import {
   FaLaravel,
   FaFacebook,
   FaPhp,
+  FaBars,
+  
 } from "react-icons/fa";
+import { X } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
+  const [showNav, setShowNav] = useState(false);
 
   return (
     <div className="bg-gray-900 text-gray-100 min-h-screen font-sans">
       <nav
-        className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] md:w-[70%] lg:w-[60%] 
+        className="hidden sm:fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] md:w-[70%] lg:w-[60%] 
                 bg-gray-800 bg-opacity-70 backdrop-blur-lg text-white py-3 px-8 
-                flex justify-center items-center z-50 shadow-lg rounded-full 
+                sm:flex justify-center items-center z-50 shadow-lg rounded-full 
                 border border-gray-700 transition-all duration-300"
       >
-        <div className="flex space-x-1 md:space-x-6">
-          {["home", "about", "projects", "experiences",  "contact"].map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById(section)
-                  ?.scrollIntoView({ behavior: "smooth" });
-                setActiveSection(section);
-              }}
-              className={`transition duration-300 text-sm md:text-xl px-4 py-2 md:px-6 md:py-3 rounded-full flex items-center 
+        <div className="hidden sm:flex space-x-1 md:space-x-6">
+          {["home", "about", "projects", "experiences", "contact"].map(
+            (section) => (
+              <a
+                key={section}
+                href={`#${section}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById(section)
+                    ?.scrollIntoView({ behavior: "smooth" });
+                  setActiveSection(section);
+                }}
+                className={`transition duration-300 text-sm md:text-xl px-4 py-2 md:px-6 md:py-3 rounded-full flex items-center 
                     font-medium tracking-wide capitalize
                     ${
                       activeSection === section
                         ? "bg-orange-400 text-gray-900 font-bold shadow-md shadow-orange-500"
                         : "hover:text-orange-400 hover:bg-gray-700 hover:bg-opacity-40"
                     }`}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </a>
-          ))}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </a>
+            )
+          )}
         </div>
       </nav>
+
+      <nav className="flex">
+        <div className="fixed top-4 right-4">
+          <FaBars className={` ${showNav ? "hidden" : "block"} sm:hidden`} onClick={() => setShowNav(true)} />
+            <X className={` ${showNav ? "block" : "hidden"}  `} onClick={() => setShowNav(false)}/>
+        </div>
+      </nav>
+
+      {showNav && (<>
+        <ol className="mt-15 mb-4 space-y-5  flex justify-center flex-col items-center">
+        <li>Home</li>
+        <li>About</li>
+        <li>Projects</li>
+        <li>Experiences</li>
+        <li>Contact</li>
+      </ol></>)}
+      
 
       {/* Hero Section */}
       <motion.section
@@ -128,7 +151,7 @@ export default function Portfolio() {
                 ease: "easeInOut",
                 delay: index * 0.05,
               }}
-               className="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-center space-x-4 h-20 transition-all"
+              className="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-center space-x-4 h-20 transition-all"
             >
               <Icon className="text-orange-500 text-2xl" />
               <span>{name}</span>
@@ -253,8 +276,6 @@ export default function Portfolio() {
         transition={{ duration: 1 }}
       >
         <h2 className="text-4xl font-bold text-orange-400">Experiences</h2>
-
-        
       </motion.section>
 
       {/* Contact Section */}
