@@ -13,6 +13,7 @@ import {
   FaBootstrap,
   FaLaravel,
   FaFacebook,
+  FaPhp,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -28,7 +29,7 @@ export default function Portfolio() {
                 border border-gray-700 transition-all duration-300"
       >
         <div className="flex space-x-1 md:space-x-6">
-          {["home", "about", "projects", "contact"].map((section) => (
+          {["home", "about", "projects", "experiences",  "contact"].map((section) => (
             <a
               key={section}
               href={`#${section}`}
@@ -100,7 +101,7 @@ export default function Portfolio() {
         </div>
 
         {/* Skills Section */}
-        <div className="max-w-4xl mx-auto px-6 mt-6 grid grid-cols-2 md:grid-cols-3 gap-6 text-gray-300">
+        <div className="max-w-4xl mx-auto px-6 mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-gray-300">
           {[
             { name: "HTML", icon: FaHtml5 },
             { name: "CSS", icon: FaCss3Alt },
@@ -111,6 +112,7 @@ export default function Portfolio() {
             { name: "Laravel", icon: FaLaravel },
             { name: "Github", icon: FaGithub },
             { name: "Figma", icon: FaFigma },
+            { name: "PHP", icon: FaPhp },
           ].map(({ name, icon: Icon }, index) => (
             <motion.div
               key={name}
@@ -126,7 +128,7 @@ export default function Portfolio() {
                 ease: "easeInOut",
                 delay: index * 0.05,
               }}
-              className="bg-gray-800 p-4 rounded-lg shadow-lg flex items-center space-x-3 transition-all"
+               className="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center justify-center space-x-4 h-20 transition-all"
             >
               <Icon className="text-orange-500 text-2xl" />
               <span>{name}</span>
@@ -197,7 +199,7 @@ export default function Portfolio() {
           </div>
 
           <p className="mt-12 text-lg text-gray-300">
-            When I'm not coding or designing, you can find me exploring new
+            When I&apos;m not coding or designing, you can find me exploring new
             trends in tech, reading about human-centered design, or enjoying a
             cup of coffee while sketching ideas. ☕
           </p>
@@ -242,10 +244,23 @@ export default function Portfolio() {
         </div>
       </motion.section>
 
+      {/* Experiences */}
+      <motion.section
+        id="experiences"
+        className="py-10 bg-gray-800 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <h2 className="text-4xl font-bold text-orange-400">Experiences</h2>
+
+        
+      </motion.section>
+
       {/* Contact Section */}
       <motion.section
         id="contact"
-        className="py-24 bg-gray-800 text-center"
+        className="py-24 bg-gray-900 text-center"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
