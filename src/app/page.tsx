@@ -10,6 +10,7 @@ import Project from "./sections/project";
 import Hero from "./sections/hero";
 import About from "./sections/about";
 import Experience from "./sections/experience";
+import Contact from "./sections/contact";
 
 
 
@@ -167,6 +168,9 @@ const navVariants = {
 
       {/* EXPERIENCE SECTION */}
       <Experience />
+
+      {/* CONTACT SECTION */}
+      <Contact />
 
     </div>
   );
