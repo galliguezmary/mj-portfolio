@@ -12,8 +12,6 @@ import {
   FaLaravel,
   FaFacebook,
   FaPhp,
-  FaBars,
-  FaTimes,
 } from "react-icons/fa";
 
 export default function hero() {
