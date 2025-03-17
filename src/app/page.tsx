@@ -193,7 +193,7 @@ export default function Portfolio() {
       <Experience />
 
       {/* CONTACT SECTION */}
-      <Contact />
+
     </div>
   );
 }
