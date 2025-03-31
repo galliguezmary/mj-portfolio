@@ -3,7 +3,8 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
   const { name, email, message } = await req.json();
-
+  console.log(name, email, message);
+  
   // Validate input fields
   if (!name || !email || !message) {
     return NextResponse.json(
@@ -12,14 +13,17 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Configure Nodemailer transporter
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER as string,
-      pass: process.env.EMAIL_PASS as string,
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false, // may help if the connection is being blocked
     },
   });
+  
 
   // Send styled email
   await transporter.sendMail({
