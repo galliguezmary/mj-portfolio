@@ -1,14 +1,24 @@
 import { useState } from "react";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("");
+// Define the type for form data
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
-  const handleChange = (e:any) => {
+export default function Contact() {
+  // Initialize state with typed form data
+  const [formData, setFormData] = useState<FormData>({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<string>("");
+
+  // Type the event parameter for handleChange
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e:any) => {
+  // Type the event parameter for handleSubmit
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("Sending...");
 
