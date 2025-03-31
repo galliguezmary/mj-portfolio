@@ -84,7 +84,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           {[
-            { icon: FaGithub, link: "https://github.com/mjann0712" },
+            { icon: FaGithub, link: "https://github.com/galliguezmary" },
             {
               icon: FaFacebook,
               link: "https://www.facebook.com/mjanngalliguez",

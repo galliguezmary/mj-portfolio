@@ -9,6 +9,7 @@ import Project from "./sections/project";
 import Hero from "./sections/hero";
 import About from "./sections/about";
 import Experience from "./sections/experience";
+import Contact from "./sections/contact";
 
 export default function Portfolio() {
   const [scrolling, setScrolling] = useState(false);
@@ -192,7 +193,7 @@ export default function Portfolio() {
       <Experience />
 
       {/* CONTACT SECTION */}
-
+      <Contact />
     </div>
   );
 }
