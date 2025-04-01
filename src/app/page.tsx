@@ -67,7 +67,9 @@ export default function Portfolio() {
           bg-gray-800 bg-opacity-70 backdrop-blur-lg text-white py-2 sm:py-2 lg:py-3 px-6 
           text-xs sm:text-sm lg:text-base lg:flex justify-center items-center text-center 
           z-50 shadow-lg rounded-full border border-gray-800 transition-all duration-500 ${
-            scrolling ? "bg-opacity-90 backdrop-blur-md shadow-orange-400/50" : ""
+            scrolling
+              ? "bg-opacity-90 backdrop-blur-md shadow-orange-400/50"
+              : ""
           }`}
       >
         <div className="space-x-3 flex items-center justify-center">

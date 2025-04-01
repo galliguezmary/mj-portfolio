@@ -1,80 +1,113 @@
-import { useState } from "react";
+"use client";
 
-// Define the type for form data
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-}
+import { motion } from "framer-motion";
+import { useState, useCallback } from "react";
 
 export default function Contact() {
-  // Initialize state with typed form data
-  const [formData, setFormData] = useState<FormData>({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<string>("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
 
-  // Type the event parameter for handleChange
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (!e) return;
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Type the event parameter for handleSubmit
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("Sending...");
 
-    const res = await fetch("/api/contact", {
+    const response = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
 
-    const result = await res.json();
-    if (result.success) {
-      setStatus("✅ Email sent successfully!");
+    if (response.ok) {
+      setSubmitted(true);
       setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setSubmitted(false), 3000);
     } else {
-      setStatus("❌ Failed to send email.");
+      alert("Error sending message. Please try again.");
     }
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-gray-800 text-gray-100 rounded-lg shadow-lg border border-orange-400">
-      <h2 className="text-2xl font-bold mb-4 text-center text-orange-400">Contact Us</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <section
+      id="contact"
+      className="py-16 px-6 text-center bg-gray-900 text-gray-100"
+    >
+      <motion.h2
+        className="text-3xl font-bold mb-6 text-orange-400"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Get In Touch
+      </motion.h2>
+
+      <motion.form
+        onSubmit={handleSubmit}
+        className="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <input
           type="text"
           name="name"
-          value={formData.name}
           placeholder="Your Name"
+          value={formData.name}
           onChange={handleChange}
           required
-          className="w-full p-3 border border-orange-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-gray-700 text-white"
+          className="w-full p-3 mb-4 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-400 focus:ring-orange-400"
         />
+
         <input
           type="email"
           name="email"
-          value={formData.email}
           placeholder="Your Email"
+          value={formData.email}
           onChange={handleChange}
           required
-          className="w-full p-3 border border-orange-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-gray-700 text-white"
+          className="w-full p-3 mb-4 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-400 focus:ring-orange-400"
         />
+
         <textarea
           name="message"
-          value={formData.message}
+          rows={4}
           placeholder="Your Message"
+          value={formData.message}
           onChange={handleChange}
           required
-          className="w-full p-3 border border-orange-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-gray-700 text-white h-32"
-        />
-        <button
+          className="w-full p-3 mb-4 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-400 focus:ring-orange-400"
+        ></textarea>
+
+        <motion.button
           type="submit"
-          className="w-full bg-orange-400 text-gray-900 p-3 rounded-lg hover:bg-orange-500 transition font-bold shadow-md"
+          className="w-full p-3 bg-orange-400 text-gray-900 font-bold rounded-lg shadow-md hover:bg-orange-500 transition"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           Send Message
-        </button>
-      </form>
-      {status && <p className="text-center mt-4 font-semibold text-orange-400">{status}</p>}
-    </div>
+        </motion.button>
+      </motion.form>
+
+      {submitted && (
+        <motion.p
+          className="mt-4 text-green-400"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          Thank you! Your message has been sent.
+        </motion.p>
+      )}
+    </section>
   );
 }
