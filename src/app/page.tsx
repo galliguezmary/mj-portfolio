@@ -139,7 +139,7 @@ export default function Portfolio() {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 120 }}
+            transition={{ type: "spgitring", stiffness: 120 }}
             className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-full bg-gray-800 text-white shadow-lg 
             flex flex-col items-center justify-center space-y-6 z-50"
           >
