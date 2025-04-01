@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
