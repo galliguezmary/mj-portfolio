@@ -39,8 +39,8 @@ export default function Contact() {
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          I'd love to hear from you! Whether you have a question or just want
-          to say hello, feel free to reach out to me. I'll get back to you as
+          I&apos;d love to hear from you! Whether you have a question or just want
+          to say hello, feel free to reach out to me. I&apos;ll get back to you as
           soon as possible.
         </motion.p>
 
