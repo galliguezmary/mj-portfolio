@@ -12,6 +12,7 @@ const projects = [
   {
     items: [
       { title: "Library Inventory System", description: "Wireframe was created first to visualize the interface, saving time on revisions when adding features.", img: "/images/p4.png" },
+      { title: "Decicon", description: "Mobile Application for converting decimals", img: "/images/p5.png" },
     ],
   },
 ];

@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
   FaGithub,
-  FaEnvelope,
   FaHtml5,
   FaCss3Alt,
   FaJsSquare,
@@ -93,7 +92,6 @@ export default function Hero() {
               icon: FaLinkedin,
               link: "https://www.linkedin.com/in/mary-joyce-ann-galliguez",
             },
-            { icon: FaEnvelope, link: "mailto:mjanngalliguez77@gmail.com" },
           ].map(({ icon: Icon, link }, index) => (
             <motion.a
               key={index}
@@ -103,7 +101,7 @@ export default function Hero() {
               className="text-3xl text-gray-300 hover:text-orange-500 transition-transform transform hover:scale-110"
               whileHover={{ rotate: 10 }}
             >
-              <Icon />
+              <Icon className="w-8 h-8 flex-shrink-0" />
             </motion.a>
           ))}
         </motion.div>
@@ -139,8 +137,8 @@ export default function Hero() {
                 boxShadow: "0 0 10px rgba(255,165,0,0.5)",
               }}
             >
-              <Icon className="text-orange-500 text-2xl" />
-              <span>{name}</span>
+              <Icon className="w-8 h-8 flex-shrink-0 text-orange-500" />
+              <span className="text-sm sm:text-base">{name}</span>
             </motion.div>
           ))}
         </motion.div>
