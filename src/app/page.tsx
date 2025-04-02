@@ -67,9 +67,7 @@ export default function Portfolio() {
           bg-gray-800 bg-opacity-70 backdrop-blur-lg text-white py-2 sm:py-2 lg:py-3 px-6 
           text-xs sm:text-sm lg:text-base lg:flex justify-center items-center text-center 
           z-50 shadow-lg rounded-full border border-gray-800 transition-all duration-500 ${
-            scrolling
-              ? "bg-opacity-90 backdrop-blur-md shadow-orange-400/50"
-              : ""
+            scrolling ? "bg-opacity-90 backdrop-blur-md shadow-orange-400/50" : ""
           }`}
       >
         <div className="space-x-3 flex items-center justify-center">
@@ -89,11 +87,11 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                   className={`transition duration-300 text-base lg:text-lg px-3 py-2 md:px-4 md:py-3 rounded-full flex items-center 
-          font-medium tracking-wide capitalize ${
-            activeSection === section
-              ? "bg-orange-400 text-gray-900 font-bold shadow-md shadow-orange-500"
-              : "hover:text-orange-400 hover:bg-gray-700 hover:bg-opacity-40"
-          }`}
+                    font-medium tracking-wide capitalize ${
+                      activeSection === section
+                        ? "bg-orange-400 text-gray-900 font-bold shadow-md shadow-orange-500"
+                        : "hover:text-orange-400 hover:bg-gray-700 hover:bg-opacity-40"
+                    }`}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </motion.a>
@@ -139,7 +137,7 @@ export default function Portfolio() {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spgitring", stiffness: 120 }}
+            transition={{ type: "spring", stiffness: 120 }}
             className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-full bg-gray-800 text-white shadow-lg 
             flex flex-col items-center justify-center space-y-6 z-50"
           >
