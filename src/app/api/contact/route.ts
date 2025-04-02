@@ -1,33 +1,28 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-interface EmailRequestBody {
-    name: string;
-    email: string;
-    message: string;
-}
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== "POST") {
-        return res.status(405).json({ message: "Method Not Allowed" });
-    }
-
-    const { name, email, message } = req.body as EmailRequestBody;
-
-    if (!name || !email || !message) {
-        return res.status(400).json({ message: "All fields are required" });
-    }
-
-    // Configure Nodemailer Transporter
-    const transporter = nodemailer.createTransport({
-        service: "gmail", // Or use another email service
-        auth: {
-            user: process.env.EMAIL_USER as string,
-            pass: process.env.EMAIL_PASS as string,
-        },
-    });
-
+export async function POST(req: Request) {
     try {
+        const body = await req.json(); // Parse JSON body
+        const { name, email, message } = body;
+
+        // Validate input
+        if (!name || !email || !message) {
+            return NextResponse.json({ message: "All fields are required" }, { status: 400 });
+        }
+
+        // Configure Nodemailer Transporter
+        const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587, // Use 587 instead of 465
+            secure: false, // Must be false for port 587
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
+            },
+        });
+
+        // Send email
         await transporter.sendMail({
             from: `"${name}" <${email}>`,
             to: process.env.EMAIL_TO,
@@ -38,9 +33,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                    <p><strong>Message:</strong> ${message}</p>`,
         });
 
-        return res.status(200).json({ message: "Email sent successfully!" });
+        return NextResponse.json({ message: "Email sent successfully!" }, { status: 200 });
+
     } catch (error) {
         console.error("Email sending error:", error);
-        return res.status(500).json({ message: "Error sending email" });
+        return NextResponse.json({ message: "Error sending email", error }, { status: 500 });
     }
 }
