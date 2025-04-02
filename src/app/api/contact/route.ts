@@ -50,8 +50,8 @@ export async function POST(req: Request) {
         console.log("Email sent successfully!", info.response);
         return NextResponse.json({ message: "Email sent successfully!" }, { status: 200 });
 
-    } catch (error: any) {
+    } catch (error) {
         console.error("Error in API Route:", error);
-        return NextResponse.json({ message: "Internal Server Error", error: error.message }, { status: 500 });
+        return NextResponse.json({ message: "Internal Server Error"}, { status: 500 });
     }
 }
