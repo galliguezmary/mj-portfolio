@@ -55,12 +55,13 @@ export async function POST(req: Request) {
         // Return success response
         return NextResponse.json({ message: "Email sent successfully!" }, { status: 200 });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Email sending error:", error);
     
         return NextResponse.json({ 
             message: "Error sending email", 
-            error: error.message || "Unknown error"  // Ensure error details are included
+            error: error instanceof Error ? error.message : "Unknown error" 
         }, { status: 500 });
     }
+    
 }
