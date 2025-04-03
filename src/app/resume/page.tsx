@@ -19,7 +19,7 @@ export default function Resume() {
       <div className="flex flex-col justify-center sm:flex-row gap-3 sm:gap-4 mt-6 w-full max-w-sm sm:max-w-none">
         {/* Download Resume Button */}
         <a
-          href="/mj-resume2025.pdf"
+          href="files/mj-resume2025.pdf"
           download
           className="flex items-center justify-center gap-2 px-5 py-3 text-md sm:text-lg font-semibold text-white bg-orange-500 rounded-2xl shadow-lg hover:bg-orange-600 transition-transform transform hover:scale-105 w-full sm:w-auto"
         >

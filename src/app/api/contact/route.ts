@@ -32,14 +32,14 @@ export async function POST(req: Request) {
         // Email HTML template with styles
         const emailHTML = `
             <div style="font-family: Arial, sans-serif; background-color: #f8f8f8; padding: 20px; border-radius: 8px;">
-                <h2 style="color: #333;">New Contact Form Submission</h2>
+                <h2 style="color: #333;">New Message from ${name}</h2>
                 <p><strong style="color: #007bff;">Name:</strong> ${name}</p>
                 <p><strong style="color: #007bff;">Email:</strong> <a href="mailto:${email}" style="color: #007bff;">${email}</a></p>
                 <p style="margin-top: 10px; padding: 10px; background: #fff; border-radius: 5px; border-left: 4px solid #007bff;">
                     ${message}
                 </p>
                 <br/>
-                <p style="color: #666; font-size: 12px;">This message was sent from your website contact form.</p>
+                <p style="color: #666; font-size: 12px;">This message was sent from mj portfolio.</p>
             </div>
         `;
 
