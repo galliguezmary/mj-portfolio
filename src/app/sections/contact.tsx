@@ -75,7 +75,7 @@ export default function Contact() {
           transition={{ duration: 1, delay: 0.2 }}
         >
           I&apos;d love to hear from you! Whether you have a question or just want
-          to say hello, feel free to reach out to me. I&apos;ll get back to you as
+          to say hello, feel free to reach out. I&apos;ll get back to you as
           soon as possible.
         </motion.p>
 

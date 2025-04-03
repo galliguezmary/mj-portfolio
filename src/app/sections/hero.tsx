@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
@@ -82,16 +83,9 @@ export default function Hero() {
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          {[
-            { icon: FaGithub, link: "https://github.com/galliguezmary" },
-            {
-              icon: FaFacebook,
-              link: "https://www.facebook.com/mjanngalliguez",
-            },
-            {
-              icon: FaLinkedin,
-              link: "https://www.linkedin.com/in/mary-joyce-ann-galliguez",
-            },
+          {[{ icon: FaGithub, link: "https://github.com/galliguezmary" },
+            { icon: FaFacebook, link: "https://www.facebook.com/mjanngalliguez" },
+            { icon: FaLinkedin, link: "https://www.linkedin.com/in/mary-joyce-ann-galliguez" },
           ].map(({ icon: Icon, link }, index) => (
             <motion.a
               key={index}
@@ -113,8 +107,7 @@ export default function Hero() {
           animate={{ opacity: isVisible ? 1 : 0 }}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          {[
-            { name: "HTML", icon: FaHtml5 },
+          {[{ name: "HTML", icon: FaHtml5 },
             { name: "CSS", icon: FaCss3Alt },
             { name: "JavaScript", icon: FaJsSquare },
             { name: "React", icon: FaReact },
@@ -141,6 +134,23 @@ export default function Hero() {
               <span className="text-sm sm:text-base">{name}</span>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Resume Button */}
+        <motion.div
+          className="mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+          transition={{ duration: 0.8, delay: 1 }}
+        >
+          <Link href="/resume">
+            <motion.button
+              className="px-6 py-3 text-lg font-semibold text-white bg-orange-500 rounded-2xl shadow-lg hover:bg-orange-600 transition-transform transform hover:scale-100"
+              whileHover={{ scale: 1.1 }}
+            >
+              View Resume
+            </motion.button>
+          </Link>
         </motion.div>
       </motion.section>
     </>
